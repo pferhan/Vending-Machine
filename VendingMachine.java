@@ -17,7 +17,7 @@ public class VendingMachine {
         snacks.put("Snickers",1.5);  
         snacks.put("KitKat",1.5);  
         snacks.put("Cheetos",2.0);  
-        snacks.put("Sour Patch Kids",1.5);    
+        snacks.put("Sour Patch Kids",1.5);   
 }
    
    
