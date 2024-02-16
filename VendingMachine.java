@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class VendingMachine {
     private Map<String, Double> snacks = new HashMap<>();
+    private double insertedMoney = 0;
 
     public VendingMachine() {
         snacks.put("Doritos",2.0);
@@ -23,8 +24,9 @@ public class VendingMachine {
 
     public String chooseSnack() {
         Scanner var1 = new Scanner(System.in);
-        System.out.println("Choose your favorite snack!");
-        Iterator var2 = this.snacks.keySet().iterator();
+        System.out.println("Welcome to the vending machine!");
+        System.out.println("Please choose your favorite snack from the following:");
+        Iterator<String> var2 = this.snacks.keySet().iterator();
 
         while(var2.hasNext()) {
             String var3 = (String)var2.next();
@@ -38,15 +40,39 @@ public class VendingMachine {
             System.out.println("Sorry that snack is not available. Please choose from the available options.");
         }
 
-        var1.close();
-
     return var4;
+    }
+
+    public void insertMoney(Scanner scanner) {
+        System.out.println("Please insert money now: (only $1 bills are accepted)");
+        
+        while(!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a valid amount.");
+            scanner.nextLine();
+            System.out.print("Please insert money now: (only $1 bills are accepted)");
+        }
+
+        int money = scanner.nextInt();
+
+        if (money >= 1) {
+            insertedMoney += money;
+            System.out.println("Money inserted: $"+money);
+        } else {
+            System.out.println("only $1 bill accepted. Please try again.");
+        }
+
     }
    
     public static void main(String[] var0) 
     {
-        VendingMachine var1 = new VendingMachine();
-        String var2 = var1.chooseSnack();
+        VendingMachine vendingMachine = new VendingMachine();
+        Scanner scanner = new Scanner(System.in);
+
+        String var2 = vendingMachine.chooseSnack();
         System.out.println("You have selected: " + var2);
+
+        vendingMachine.insertMoney(scanner);
+
+        scanner.close();
 	}
 }
