@@ -20,8 +20,6 @@ public class VendingMachine {
         snacks.put("Sour Patch Kids",1.5);   
 }
    
-   
-   
     public static void main(String[] args) 
     {
 	
