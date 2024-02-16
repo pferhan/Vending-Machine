@@ -49,7 +49,7 @@ public class VendingMachine {
         while(!scanner.hasNextInt()) {
             System.out.println("Invalid input. Please enter a valid amount.");
             scanner.nextLine();
-            System.out.print("Please insert money now: (only $1 bills are accepted)");
+            System.out.println("Please insert money now: (only $1 bills are accepted)");
         }
 
         int money = scanner.nextInt();
@@ -62,16 +62,34 @@ public class VendingMachine {
         }
 
     }
+
+    public boolean confirmChoice(Scanner scanner, String selectedSnack, int money) {
+        System.out.println("You have selected " + selectedSnack + " and inserted $" + money);
+        System.out.print("Do you want to proceed with your purchase? (yes/no): ");
+        String confirmation = scanner.next().toLowerCase();
+
+        if (confirmation.equals("yes")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
    
     public static void main(String[] var0) 
     {
         VendingMachine vendingMachine = new VendingMachine();
         Scanner scanner = new Scanner(System.in);
 
-        String var2 = vendingMachine.chooseSnack();
-        System.out.println("You have selected: " + var2);
+        String selectedSnack = vendingMachine.chooseSnack();
+        System.out.println("You have selected: " + selectedSnack);
 
         vendingMachine.insertMoney(scanner);
+
+        if (vendingMachine.confirmChoice(scanner, selectedSnack, (int)vendingMachine.insertedMoney)) {
+            System.out.println("Transaction completed."); //add end message and change here
+        } else {
+            System.out.println("Transaction canceled. Refunding $" + vendingMachine.insertedMoney); 
+        }
 
         scanner.close();
 	}
