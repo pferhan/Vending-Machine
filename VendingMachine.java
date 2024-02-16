@@ -1,5 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
+
+import javax.swing.event.SwingPropertyChangeSupport;
 
 public class VendingMachine {
     private Map<String, Double> snacks;
@@ -19,6 +22,8 @@ public class VendingMachine {
         snacks.put("Cheetos",2.0);  
         snacks.put("Sour Patch Kids",1.5);   
 }
+   
+   
    
     public static void main(String[] args) 
     {
