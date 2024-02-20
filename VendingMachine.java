@@ -74,23 +74,32 @@ public class VendingMachine {
             return false;
         }
     }
+
+    public void returnChange(double price, double moneyInserted) {
+        double change = moneyInserted - price;
+        if (change > 0) {
+            System.out.println("Please take your change: $" + change);
+        } else {
+            System.out.println("No change to return.");
+        }
+    }
    
-    public static void main(String[] var0) 
-    {
+    public static void main(String[] var0) {
         VendingMachine vendingMachine = new VendingMachine();
         Scanner scanner = new Scanner(System.in);
-
+    
         String selectedSnack = vendingMachine.chooseSnack();
         System.out.println("You have selected: " + selectedSnack);
-
+    
         vendingMachine.insertMoney(scanner);
-
-        if (vendingMachine.confirmChoice(scanner, selectedSnack, (int)vendingMachine.insertedMoney)) {
-            System.out.println("Transaction completed."); //add end message and change here
+    
+        if (vendingMachine.confirmChoice(scanner, selectedSnack, (int) vendingMachine.insertedMoney)) {
+            System.out.println("Transaction completed.");
+            vendingMachine.returnChange(vendingMachine.snacks.get(selectedSnack), vendingMachine.insertedMoney);
+            System.out.println("That is a very good choice, enjoy!");
         } else {
-            System.out.println("Transaction canceled. Refunding $" + vendingMachine.insertedMoney); 
+            System.out.println("Transaction canceled. Refunding $" + vendingMachine.insertedMoney);
         }
-
         scanner.close();
-	}
+    }
 }
